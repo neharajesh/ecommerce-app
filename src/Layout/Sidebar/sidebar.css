@@ -1,0 +1,80 @@
+@import url("../../styles.css");
+
+.sidebar {
+    width: 200px;
+    height: 90vh;
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-in;
+    letter-spacing: 0.2;
+    border-right: 1px solid var(--color-light-grey);
+    padding-top: 1rem;
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .nav-link:hover {
+    background-color: pink;
+}
+
+.sidebar .nav-link>span {
+    font-size: 0.9em;
+    margin-left: 0.8rem;
+    text-decoration: none;
+}
+
+.sidebar .nav-active {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.nav-active span { 
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.sidebar hr {
+    margin: 1rem 0;
+    height: 0;
+    border-top: 0.05px thin var(--color-light-grey);
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+
+@media screen and (max-width: 1000px) {
+    .sidebar {
+        width: 90px;
+    }
+    .sidebar .nav-link {
+        justify-content: center;
+    }
+    .sidebar .nav-link>span {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sidebar {
+        transform: translateX(-120%);
+        position: fixed;
+        z-index: var(--max-z-index);
+    }
+    .sidebar hr {
+        display: none;
+    }
+    
+}

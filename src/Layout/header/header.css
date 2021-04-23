@@ -1,0 +1,48 @@
+@import url("../../styles.css");
+
+.header {
+    height: 10vh;
+    width: 100%;
+    padding: 0 5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.75);
+}
+
+.header-brand {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.header-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-links p {
+    margin-left: 2rem;
+}
+
+.header-menu {
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .header {
+        justify-content: space-evenly;
+    }    
+}
+
+@media screen and (max-width: 600px) {
+    .header-links {
+        display: none;
+    }
+    .header-menu {
+        display: block;
+        position: fixed;
+        top: 1.2rem;
+        left: 1rem;
+    }
+}
