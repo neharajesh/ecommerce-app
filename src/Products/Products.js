@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { showNotification } from "../Utilities/toast";
 import { useProduct } from "../context/product-context";
 import { updateCart } from "../Utilities/cart-utilities";
-import "./products.css";
 
 export const Products = () => {
   const { productList } = useProduct();
@@ -128,8 +127,8 @@ export const Products = () => {
 
   return (
     <>
-      <div className="product-sort">
-        <fieldset>
+      <div className="flex w-100">
+        <fieldset className="w-auto mg-1 pd-1">
           <legend>Sort By :</legend>
           <label>
             <input
@@ -150,7 +149,7 @@ export const Products = () => {
           </label>
         </fieldset>
 
-        <fieldset>
+        <fieldset className="w-auto mg-1 pd-1">
           <legend>Price :</legend>
           <label>
             <input
@@ -181,7 +180,7 @@ export const Products = () => {
           </label>
         </fieldset>
 
-        <fieldset>
+        <fieldset className="w-auto mg-1 pd-1">
           <legend>Rating :</legend>
           <label>
             <input
@@ -231,32 +230,42 @@ export const Products = () => {
         </fieldset>
 
         <button
-          id="filter-reset-button"
-          className="button-primary"
+          className="btn fill-primary-yellow pd-05 mg-05 h-50 w-fit bdr-rad-m bdr-thick flex-self-center"
           onClick={() => dispatch({ type: "INITIAL_DATA" })}
         >
           Reset Filters
         </button>
       </div>
 
-      <div className="product-container">
+      <div className="h-auto w-100 grid-3 mg-tb-1 mg-r-2">
         {filteredData.map(
           ({ _id, name, image, price, rating, inStock, fastDelivery }) => (
-            <div key={_id} className="product-item">
-              <img src={image} alt={name} />
-              <div className="product-details">
-                <p className="txt-700 txt-xl txt-red">{name}</p>
-                <p className="txt-l txt-blue">Rs. {price}</p>
-                <p id="product-details-rating">{addRatingStars(rating)}</p>
-                {inStock && <span className="card-badge">In Stock</span>}
+            <div
+              key={_id}
+              className="card bdr-thin bdr-none bs bdr-rad-m mg-025 flex"
+            >
+              <img
+                className="img-m mg-05 flex-self-center"
+                src={image}
+                alt={name}
+              />
+              <div className="w-100 mg-1 flex-col-center-items-y">
+                <p className="txt-700 txt-xl">{name}</p>
+                <p className="txt-l txt-700 txt-grey mg-tb-025">Rs. {price}</p>
+                <p className="mg-tb-05">{addRatingStars(rating)}</p>
+                {!inStock && (
+                  <span className="card-overlay txt-l txt-700">
+                    OUT OF STOCK
+                  </span>
+                )}
                 {fastDelivery && (
-                  <span className="card-badge delivery-badge">
+                  <span className="badge-tl fill-primary-yellow txt-700 pd-025 txt-s">
                     fast delivery
                   </span>
                 )}
-                <div id="product-details-button-container">
+                <div id="cont-fluid w-100">
                   <button
-                    className="button-add button-primary"
+                    className="pd-05 mg-05 bdr-none bdr-rad-m btn btn-primary-blue txt-white"
                     onClick={() =>
                       addToCartHandler(filteredData, itemsInCart, _id)
                     }
@@ -264,15 +273,16 @@ export const Products = () => {
                     Add to Cart
                   </button>
                   <button
-                    id="button-wishlist"
-                    className="button-add button-secondary"
+                    className="pd-05 mg-05 bdr-thick bdr-blue bdr-rad-m btn btn-secondary-blue"
                     onClick={() => addToWishlistHandler(filteredData, _id)}
                   >
                     Add to Wishlist
                   </button>
                 </div>
                 <br />
-                <Link to={`/products/${_id}`}>View Details</Link>
+                <Link className="txt-black" to={`/products/${_id}`}>
+                  View Details
+                </Link>
               </div>
             </div>
           )

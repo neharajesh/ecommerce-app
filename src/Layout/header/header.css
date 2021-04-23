@@ -4,25 +4,7 @@
     height: 10vh;
     width: 100%;
     padding: 0 5rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     box-shadow: 0 0 3px 0 rgba(0,0,0,0.75);
-}
-
-.header-brand {
-    font-size: 1.5em;
-    font-weight: 700;
-}
-
-.header-links {
-    display: flex;
-    flex-direction: row;
-}
-
-.header-links p {
-    margin-left: 2rem;
 }
 
 .header-menu {

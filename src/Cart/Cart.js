@@ -2,6 +2,7 @@ import { useCart } from "../context/cart-context";
 import { showNotification } from "../Utilities/toast";
 import { updateCart } from "../Utilities/cart-utilities";
 import { useProduct } from "../context/product-context";
+import "../styles.css";
 
 export const Cart = () => {
   const {
@@ -41,28 +42,33 @@ export const Cart = () => {
   const updatedItemsList = itemsInCart.filter((item) => item.quantity > 0);
 
   return (
-    <div className="cart-page-container">
-      <div className="cart-container">
+    <div className="flex w-100 h-100">
+      <div className="flex-col w-100">
         {updatedItemsList
           .filter((item) => item.quantity > 0)
           .map((item) => (
-            <div className="cart-item" key={item._id}>
-              <div className="cart-details-container">
-                <img id="cart-item-image" src={item.image} alt={item.name} />
-                <div className="cart-item-details">
-                  <p id="cart-item-name"> {item.name} </p>
+            <div
+              className="w-100 h-auto mg-1 flex bs pd-2 flex-items-center"
+              key={item._id}
+            >
+              <div className="flex">
+                <img className="img-m" src={item.image} alt={item.name} />
+                <div className="cont-fluid card-w-20 mg-l-2">
+                  <p className="txt-l txt-700"> {item.name} </p>
                   <p>Brand : {item.brand}</p>
                   <p>Material : {item.material}</p>
                   <p>Offer : {item.offer}</p>
                 </div>
               </div>
 
-              <div className="cart-price-container">
-                <p id="cart-item-price"> Rs. {item.price} </p>
-                <div className="cart-button-container">
+              <div className="card-w-20 flex-col">
+                <p className="txt-l txt-500 flex-self-center mg-b-2">
+                  {" "}
+                  Rs. {item.price}{" "}
+                </p>
+                <div className="flex flex-space-evenly">
                   <button
-                    className="button-primary"
-                    id="cart-button-add"
+                    className="pd-05 mg-05 bdr-none bdr-rad-m btn btn-primary-blue txt-white"
                     onClick={() =>
                       updateCartItems(productList, itemsInCart, item._id, "ADD")
                     }
@@ -71,8 +77,7 @@ export const Cart = () => {
                   </button>
                   <p>{item.quantity}</p>
                   <button
-                    className="button-secondary"
-                    id="cart-button-remove"
+                    className="pd-05 mg-05 bdr-thick bdr-blue bdr-rad-m btn btn-secondary-blue"
                     onClick={() =>
                       updateCartItems(
                         productList,
@@ -88,19 +93,21 @@ export const Cart = () => {
               </div>
             </div>
           ))}
-        {itemsInCart.length === 0 && "shop to add stuff to cart!"}
+        {itemsInCart.length === 0 && (
+          <p className="flex-self-center mg-t-2 txt-xl">
+            Shop To Add Stuff To Cart!
+          </p>
+        )}
       </div>
 
-      <div className="cart-sidebar">
-        <p>
-          Total Items In Cart :{" "}
-          <span id="cart-sidebar-highlight">{cartCount}</span>
+      <div className="cont-fluid w-25 mg-t-2 pd-2">
+        <p className="mg-tb-1 txt-l">
+          Total Items In Cart : <span className="txt-700">{cartCount}</span>
         </p>
-        <p>
-          Total Cart Price ={" "}
-          <span id="cart-sidebar-highlight">Rs. {cartPrice}</span>
+        <p className="mg-tb-1 txt-l">
+          Total Cart Price : <span className="txt-700">Rs. {cartPrice}</span>
         </p>
-        <button id="checkout-button" className="button-primary">
+        <button className="btn fill-primary-yellow pd-05 mg-05 h-fit w-fit bdr-rad-m bdr-thick flex-self-center">
           Checkout
         </button>
         <div id="notification-container" style={{ fontSize: "0.7em" }}></div>
