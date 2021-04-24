@@ -1,3 +1,5 @@
+import "./toast.css";
+
 export const showNotification = (message) => {
   const div = document.createElement("div");
   div.classList.add("toast");

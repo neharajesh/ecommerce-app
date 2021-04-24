@@ -1,0 +1,27 @@
+@import url(../styles.css);
+
+#snackbar {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: var(--color-primary-purple);
+    color: white;
+    text-align: center; 
+    border-radius: 2px;
+    padding: 10px; 
+    position: fixed; 
+    left: 50%; 
+    top: 30px; 
+    z-index: 5;
+}
+
+#snackbar.show {
+    visibility: visible; 
+}
+
+#notification-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 1rem;
+}

@@ -1,6 +1,10 @@
 @import url("https://purplecss.netlify.app/styles.css");
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
 
+:root {
+    --max-z-index: 5;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -29,3 +33,11 @@ body {
     overflow-x: hidden;
     padding-bottom: 1rem;   
 } 
+
+.bs {
+   box-shadow: 5px 5px 6px 0px var(--color-secondary-grey);
+}
+
+.z-index-6 {
+    z-index: 99;
+}

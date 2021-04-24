@@ -1,7 +1,26 @@
 @import url("../styles.css");
 
+.product-item {
+    width: 26rem;
+}
+
+.product-item:hover {
+    border: 1px solid var(--color-secondary-grey);
+}
+
+.product-button {
+    width: 100%;
+}
+
+#button-wishlist { 
+    z-index: var(--max-z-index);
+}
+
 @media screen and (max-width: 965px) {
     .product-item {
         width: 100%;
+    }
+    .product-button {
+        width: 50%;
     }
 }

@@ -47,7 +47,6 @@ export const Sidebar = ({ sidebar, handleToggleSidebar }) => {
           {login ? <BiLogOut size={30} /> : <BiLogIn size={30} />}
           <span>{login ? "Logout" : "Login"}</span>
         </NavLink>
-        {/* <li>Login</li> */}
       </nav>
     </>
   );
