@@ -43,10 +43,10 @@ export const Sidebar = ({ sidebar, handleToggleSidebar }) => {
         >
           <FaRegHeart size={30} /> <span>Wishlist</span>
         </NavLink>
-        <li className="nav-link">
+        <NavLink to="/login" className="nav-link">
           {login ? <BiLogOut size={30} /> : <BiLogIn size={30} />}
           <span>{login ? "Logout" : "Login"}</span>
-        </li>
+        </NavLink>
         {/* <li>Login</li> */}
       </nav>
     </>

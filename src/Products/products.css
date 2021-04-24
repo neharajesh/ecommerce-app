@@ -1,0 +1,7 @@
+@import url("../styles.css");
+
+@media screen and (max-width: 965px) {
+    .product-item {
+        width: 100%;
+    }
+}

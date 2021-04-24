@@ -1,5 +1,6 @@
 import { useWishlist } from "../context/wishlist-context";
 import { showNotification } from "../Utilities/toast";
+import "../styles.css";
 
 export const Wishlist = () => {
   const { itemsInWishlist, setItemsInWishlist } = useWishlist();
@@ -15,23 +16,18 @@ export const Wishlist = () => {
 
   return (
     <>
-      <div className="wishlist-container">
+      <div className="flex flex-row-wrap mg-1">
         {itemsInWishlist.map((item) => (
           <div
-            className="wishlist-item"
+            className="cont-fluid mg-1 pd-1 bdr-rad-m card-w-20 bs"
             key={item.id}
-            style={{
-              border: "1px solid black",
-              margin: "1rem",
-              padding: "1rem",
-            }}
           >
-            <img src={item.image} alt={item.name} />
-            <div className="wishlist-details">
-              <p id="wishlist-details-name">{item.name}</p>
-              <p id="wishlist-details-price">{item.price}</p>
+            <img className="img-xl" src={item.image} alt={item.name} />
+            <div className="flex-col">
+              <p className="txt-l txt-700 mg-1">{item.name}</p>
+              <p className="txt-l txt-500 mg-1"> Rs. {item.price}</p>
               <button
-                className="button-primary"
+                className="pd-05 mg-1 bdr-thick bdr-blue bdr-rad-m btn btn-secondary-blue card-w-10"
                 onClick={() => removeFromWishlist(itemsInWishlist, item.id)}
               >
                 Remove
@@ -39,7 +35,9 @@ export const Wishlist = () => {
             </div>
           </div>
         ))}
-        {itemsInWishlist.length === 0 && "wishlist is empty"}
+        {itemsInWishlist.length === 0 && (
+          <p className="flex-self-center mg-t-2 txt-xl">Wishlist is Empty!</p>
+        )}
         <div id="notification-container"></div>
       </div>
     </>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { showNotification } from "../Utilities/toast";
 import { useProduct } from "../context/product-context";
 import { updateCart } from "../Utilities/cart-utilities";
+import "./products.css";
 
 export const Products = () => {
   const { productList } = useProduct();
@@ -237,12 +238,12 @@ export const Products = () => {
         </button>
       </div>
 
-      <div className="h-auto w-100 grid-3 mg-tb-1 mg-r-2">
+      <div className="h-auto w-100 flex flex-row-wrap mg-tb-1 mg-r-2">
         {filteredData.map(
           ({ _id, name, image, price, rating, inStock, fastDelivery }) => (
             <div
               key={_id}
-              className="card bdr-thin bdr-none bs bdr-rad-m mg-025 flex"
+              className="product-item card card-w-25 bdr-thin bdr-none bs bdr-rad-m mg-1 flex"
             >
               <img
                 className="img-m mg-05 flex-self-center"
@@ -251,10 +252,12 @@ export const Products = () => {
               />
               <div className="w-100 mg-1 flex-col-center-items-y">
                 <p className="txt-700 txt-xl">{name}</p>
-                <p className="txt-l txt-700 txt-grey mg-tb-025">Rs. {price}</p>
+                <p className="txt-l txt-700 txt-grey mg-tb-025 txt-blue">
+                  Rs. {price}
+                </p>
                 <p className="mg-tb-05">{addRatingStars(rating)}</p>
                 {!inStock && (
-                  <span className="card-overlay txt-l txt-700">
+                  <span className="card-overlay txt-l txt-700 z-index-5">
                     OUT OF STOCK
                   </span>
                 )}
@@ -273,14 +276,14 @@ export const Products = () => {
                     Add to Cart
                   </button>
                   <button
-                    className="pd-05 mg-05 bdr-thick bdr-blue bdr-rad-m btn btn-secondary-blue"
+                    className="pd-05 mg-05 bdr-thick bdr-blue bdr-rad-m btn btn-secondary-blue z-index-6"
                     onClick={() => addToWishlistHandler(filteredData, _id)}
                   >
                     Add to Wishlist
                   </button>
                 </div>
                 <br />
-                <Link className="txt-black" to={`/products/${_id}`}>
+                <Link className="txt-black z-index-6" to={`/products/${_id}`}>
                   View Details
                 </Link>
               </div>

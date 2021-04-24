@@ -6,6 +6,7 @@ import { Cart } from "./Cart/Cart";
 import { Wishlist } from "./Wishlist/Wishlist";
 import { ProductDetails } from "./Products/ProductDetails";
 import "./styles.css";
+import { Login } from "./Login/Login";
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
           <Layout>
             <ProductDetails />
           </Layout>
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
       </Routes>
     </>
