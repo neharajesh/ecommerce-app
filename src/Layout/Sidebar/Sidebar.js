@@ -1,4 +1,4 @@
-import "./sidebar.css";
+import "../layout.css";
 import { RiHomeLine } from "react-icons/ri";
 import { IoMdList } from "react-icons/io";
 import { VscAccount } from "react-icons/vsc";
@@ -15,7 +15,13 @@ export const Sidebar = ({ sidebar, handleToggleSidebar }) => {
   return (
     <>
       <nav className={sidebar ? "sidebar open" : "sidebar"}>
-        <NavLink exact to="/" className="nav-link" activeClassName="nav-active">
+        <NavLink
+          exact
+          to="/"
+          end
+          className="nav-link"
+          activeClassName="nav-active"
+        >
           <RiHomeLine size={30} /> <span>Home</span>
         </NavLink>
         <NavLink
@@ -30,9 +36,13 @@ export const Sidebar = ({ sidebar, handleToggleSidebar }) => {
           <IoMdList size={30} /> <span>Categories</span>
         </li>
         <hr />
-        <li className="nav-link">
+        <NavLink
+          to="/profile"
+          className="nav-link"
+          activeClassName="nav-active"
+        >
           <VscAccount size={30} /> <span>Profile</span>
-        </li>
+        </NavLink>
         <NavLink to="/cart" className="nav-link" activeClassName="nav-active">
           <FiShoppingCart size={30} /> <span>Cart</span>
         </NavLink>

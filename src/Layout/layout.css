@@ -1,4 +1,15 @@
-@import url("../../styles.css");
+@import url("../styles.css");
+
+.header {
+    height: 10vh;
+    width: 100%;
+    padding: 0 5rem;
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.75);
+}
+
+.header-menu {
+    display: none;
+}
 
 .sidebar {
     width: 200px;
@@ -9,7 +20,6 @@
     flex-direction: column;
     transition: transform 0.2s ease-in;
     letter-spacing: 0.2;
-    border-right: 1px solid var(--color-light-grey);
     padding-top: 1rem;
 }
 
@@ -31,17 +41,17 @@
     text-decoration: none;
 }
 
-.sidebar .nav-active {
+.nav-active {
     display: flex;
     align-items: center;
     cursor: pointer;
     text-decoration: none;
     color: black;
+    font-style: italic;
 }
 
 .nav-active span { 
     cursor: pointer;
-    text-decoration: none;
 }
 
 .sidebar hr {
@@ -56,6 +66,9 @@
 
 
 @media screen and (max-width: 1000px) {
+    .header {
+        justify-content: space-evenly;
+    }  
     .sidebar {
         width: 90px;
     }
@@ -68,6 +81,15 @@
 }
 
 @media screen and (max-width: 600px) {
+    .header-links {
+        display: none;
+    }
+    .header-menu {
+        display: block;
+        position: fixed;
+        top: 1.2rem;
+        left: 1rem;
+    }
     .sidebar {
         transform: translateX(-120%);
         position: fixed;

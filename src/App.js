@@ -7,6 +7,7 @@ import { Wishlist } from "./Wishlist/Wishlist";
 import { ProductDetails } from "./Products/ProductDetails";
 import "./styles.css";
 import { Login } from "./Login/Login";
+import { Profile } from "./Profile/Profile";
 
 function App() {
   return (
@@ -39,6 +40,11 @@ function App() {
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/profile">
+          <Layout>
+            <Profile />
+          </Layout>
         </Route>
       </Routes>
     </>

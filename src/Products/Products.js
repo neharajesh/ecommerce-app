@@ -6,11 +6,12 @@ import { showNotification } from "../Utilities/toast";
 import { useProduct } from "../context/product-context";
 import { updateCart } from "../Utilities/cart-utilities";
 import "./products.css";
+import { updateWishlist } from "../Utilities/wishlist-utilities";
 
 export const Products = () => {
   const { productList } = useProduct();
   const { setCartCount, setCartPrice, itemsInCart, setItemsInCart } = useCart();
-  const { setItemsInWishlist } = useWishlist();
+  const { itemsInWishlist, setItemsInWishlist } = useWishlist();
 
   const initialData = {
     inStockOnly: true,
@@ -114,8 +115,13 @@ export const Products = () => {
 
   const addToWishlistHandler = (existingProductList, productId) => {
     showNotification("Added to Wishlist");
-    const currentItem = productList.find((item) => item._id === productId);
-    setItemsInWishlist((items) => [...items, currentItem]);
+    const updatedWishlist = updateWishlist(
+      existingProductList,
+      itemsInWishlist,
+      productId,
+      "ADD"
+    );
+    setItemsInWishlist(updatedWishlist);
   };
 
   const addRatingStars = (rating) => {

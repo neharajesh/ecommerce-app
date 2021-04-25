@@ -19,7 +19,6 @@ export const updateCart = (productItems, cartItems, itemToUpdateId, action) => {
     }
   } else {
     if (!(itemExistsInCart === undefined)) {
-      console.log("Inside Remove");
       let selectedItem = cartItems.find((item) => item._id === itemToUpdateId);
       console.log("Selected Item", selectedItem);
       if (selectedItem.quantity > 1) {

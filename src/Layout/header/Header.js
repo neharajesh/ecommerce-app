@@ -1,5 +1,6 @@
-import "./header.css";
+import "../layout.css";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { NavLink } from "react-router-dom";
 
 export const Header = ({ handleToggleSidebar }) => {
   return (
@@ -10,12 +11,26 @@ export const Header = ({ handleToggleSidebar }) => {
           size={35}
           onClick={() => handleToggleSidebar()}
         />
-        <div className="txt-xl txt-700">Brand Name</div>
+        <div className="txt-xl txt-700">Pet Smart</div>
 
         <div className="flex">
-          <p className="mg-lr-1">Profile</p>
-          <p className="mg-lr-1">Cart</p>
-          <p className="mg-lr-1">Wishlist</p>
+          <NavLink
+            to="/profile"
+            className="nav-link"
+            activeClassName="nav-active"
+          >
+            Profile
+          </NavLink>
+          <NavLink to="/cart" className="nav-link" activeClassName="nav-active">
+            Cart
+          </NavLink>
+          <NavLink
+            to="/wishlist"
+            className="nav-link"
+            activeClassName="nav-active"
+          >
+            Wishlist
+          </NavLink>
         </div>
       </div>
     </>
