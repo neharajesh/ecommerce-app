@@ -2,14 +2,20 @@
 
 .product-item {
     width: 26rem;
+    border-color: var(--color-secondary-grey);
 }
 
 .product-item:hover {
-    border: 1px solid var(--color-secondary-grey);
+    border: 1px solid var(--color-primary-grey);
 }
 
 .product-button {
     width: 100%;
+    border: 2px solid transparent;
+}
+
+.product-button:hover {
+    border: 2px solid var(--color-primary-blue);
 }
 
 #button-wishlist { 

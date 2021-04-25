@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { useOffers } from "../context/offers-context";
 import { useProduct } from "../context/product-context";
+import { GiRoundStar } from "react-icons/gi";
 import "../styles.css";
 
 export const ProductDetails = () => {
@@ -12,9 +13,9 @@ export const ProductDetails = () => {
   const offer = offersList.find((item) => item._id === offerId);
 
   const addRatingStars = (rating) => {
-    let starString = "";
+    let starString = [];
     for (let i = 0; i < rating; i++) {
-      starString += "⭐";
+      starString.push(<GiRoundStar size={20} className="mg-025 txt-yellow" />);
     }
     return starString;
   };

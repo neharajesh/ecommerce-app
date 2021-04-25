@@ -3,6 +3,8 @@
 
 :root {
     --max-z-index: 5;
+    --color-button-blue: #53beeb;
+    --color-button-black: #010101;
 }
 
 * {
@@ -45,3 +47,9 @@ body {
 .txt-strikethrough {
     text-decoration: line-through;
 }
+
+.fill-button-blue { background-color: var(--color-button-blue); }
+.fill-button-black { background-color: var(--color-button-black); }
+.price-blue { color: #457b9d; }
+
+.button-filters { float: right; }

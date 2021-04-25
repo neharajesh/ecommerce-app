@@ -13,7 +13,7 @@ export const Header = ({ handleToggleSidebar }) => {
         />
         <div className="txt-xl txt-700">Pet Smart</div>
 
-        <div className="flex">
+        <div className="header-links flex">
           <NavLink to="/cart" className="nav-link" activeClassName="nav-active">
             Cart
           </NavLink>

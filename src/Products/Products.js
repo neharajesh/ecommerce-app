@@ -1,5 +1,5 @@
 import { useCart } from "../context/cart-context";
-import { useReducer } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import { useWishlist } from "../context/wishlist-context";
 import { Link } from "react-router-dom";
 import { showNotification } from "../Utilities/toast";
@@ -8,12 +8,16 @@ import { updateCart } from "../Utilities/cart-utilities";
 import "./products.css";
 import { updateWishlist } from "../Utilities/wishlist-utilities";
 import { useOffers } from "../context/offers-context";
+import { BsLightningFill, BsSliders } from "react-icons/bs";
+import { GiRoundStar } from "react-icons/gi";
 
 export const Products = () => {
   const { productList } = useProduct();
   const { offersList } = useOffers();
   const { setCartCount, setCartPrice, itemsInCart, setItemsInCart } = useCart();
   const { itemsInWishlist, setItemsInWishlist } = useWishlist();
+  const [showFilters, setShowFilters] = useState(false);
+  const [sliderVal, setSliderVal] = useState(0);
 
   const initialData = {
     inStockOnly: true,
@@ -70,9 +74,8 @@ export const Products = () => {
     if (sortByRating === 0) {
       return existingProductList;
     }
-    let ratingNumber = sortByRating;
     const sortedProductList = existingProductList.filter(
-      (item) => item.rating === ratingNumber
+      (item) => item.rating === parseInt(sortByRating)
     );
     return sortedProductList;
   };
@@ -127,20 +130,48 @@ export const Products = () => {
   };
 
   const addRatingStars = (rating) => {
-    let starString = "";
+    let starString = [];
     for (let i = 0; i < rating; i++) {
-      starString += "⭐";
+      starString.push(
+        <GiRoundStar size={20} className="mg-r-025 txt-yellow" />
+      );
     }
     return starString;
   };
 
+  const filtersDiv = useRef("flex");
+  const sliderStars = useRef(0);
+
+  const getSliderValue = () => {
+    setSliderVal(() => sliderStars.current.value);
+  };
+
+  const toggleFilterDiv = () => {
+    setShowFilters((filters) => !filters);
+    const showVal = showFilters ? "flex" : "none";
+    filtersDiv.current.style.display = showVal;
+  };
+
+  useEffect(() => dispatch({ type: "SORT_BY_RATING", payload: sliderVal }), [
+    sliderVal,
+    setSliderVal,
+  ]);
+
   return (
     <>
-      <div className="flex w-100">
+      <button
+        className="button-filters btn fill-primary-yellow pd-05 mg-05 h-fit w-fit bdr-rad-m bdr-thick"
+        onClick={toggleFilterDiv}
+      >
+        {" "}
+        Sorting/Filters{" "}
+      </button>
+      <div ref={filtersDiv} className="flex flex-row-wrap w-75">
         <fieldset className="w-auto mg-1 pd-1">
           <legend>Sort By :</legend>
           <label>
             <input
+              className="mg-r-05 txt-s"
               type="checkbox"
               checked={inStockOnly}
               onChange={() => dispatch({ type: "TOGGLE_STOCK" })}
@@ -150,6 +181,7 @@ export const Products = () => {
           <br />
           <label>
             <input
+              className="mg-r-05 txt-s"
               type="checkbox"
               checked={fastDeliveryOnly}
               onChange={() => dispatch({ type: "TOGGLE_DELIVERY" })}
@@ -162,6 +194,7 @@ export const Products = () => {
           <legend>Price :</legend>
           <label>
             <input
+              className="mg-r-05 txt-xs"
               type="radio"
               onChange={() =>
                 dispatch({
@@ -176,6 +209,7 @@ export const Products = () => {
           <br />
           <label>
             <input
+              className="mg-r-05 txt-xs"
               type="radio"
               onChange={() =>
                 dispatch({
@@ -190,52 +224,21 @@ export const Products = () => {
         </fieldset>
 
         <fieldset className="w-auto mg-1 pd-1">
-          <legend>Rating :</legend>
-          <label>
-            <input
-              type="radio"
-              onChange={() => dispatch({ type: "SORT_BY_RATING", payload: 1 })}
-              checked={sortByRating && sortByRating === 1}
-            />
-            ⭐
-          </label>{" "}
-          <br />
-          <label>
-            <input
-              type="radio"
-              onChange={() => dispatch({ type: "SORT_BY_RATING", payload: 2 })}
-              checked={sortByRating && sortByRating === 2}
-            />
-            ⭐⭐
-          </label>{" "}
-          <br />
-          <label>
-            <input
-              type="radio"
-              onChange={() => dispatch({ type: "SORT_BY_RATING", payload: 3 })}
-              checked={sortByRating && sortByRating === 3}
-            />
-            ⭐⭐⭐
-          </label>{" "}
-          <br />
-          <label>
-            <input
-              type="radio"
-              onChange={() => dispatch({ type: "SORT_BY_RATING", payload: 4 })}
-              checked={sortByRating && sortByRating === 4}
-            />
-            ⭐⭐⭐⭐
-          </label>{" "}
-          <br />
-          <label>
-            <input
-              type="radio"
-              onChange={() => dispatch({ type: "SORT_BY_RATING", payload: 5 })}
-              checked={sortByRating && sortByRating === 5}
-            />
-            ⭐⭐⭐⭐⭐
-          </label>{" "}
-          <br />
+          <legend>
+            Rating : <span className="txt-700">{sliderVal}</span>
+          </legend>
+          1{"  "}
+          <input
+            type="range"
+            min={1}
+            max={5}
+            ref={sliderStars}
+            onChange={() => {
+              getSliderValue();
+            }}
+            checked={sortByRating && sortByRating === sliderVal}
+          />
+          {"  "}5
         </fieldset>
 
         <button
@@ -260,7 +263,7 @@ export const Products = () => {
               />
               <div className="w-100 mg-1 flex-col-center-items-y">
                 <p className="txt-700 txt-l">{name}</p>
-                <p className="txt-l txt-700 txt-grey mg-tb-025 txt-blue">
+                <p className="txt-l txt-700 txt-blue mg-tb-025 price-blue">
                   Rs. {price}
                 </p>
                 <p className="mg-tb-05">{addRatingStars(rating)}</p>
@@ -270,13 +273,13 @@ export const Products = () => {
                   </span>
                 )}
                 {fastDelivery && (
-                  <span className="badge-tl fill-primary-yellow txt-700 pd-025 txt-s">
-                    fast delivery
+                  <span className="badge-tl txt-500 pd-05 txt-s bdr-rad-round">
+                    <BsLightningFill size={20} className="txt-yellow" />
                   </span>
                 )}
                 <div id="cont-fluid w-100">
                   <button
-                    className="product-button pd-05 mg-05 bdr-none bdr-rad-m btn btn-primary-blue txt-white"
+                    className="product-button pd-05 mg-05 bdr-none bdr-rad-m btn fill-button-blue txt-black"
                     onClick={() =>
                       addToCartHandler(filteredData, itemsInCart, _id)
                     }
@@ -284,7 +287,7 @@ export const Products = () => {
                     Add to Cart
                   </button>
                   <button
-                    className="product-button pd-05 mg-05 bdr-thick bdr-blue bdr-rad-m btn btn-secondary-blue"
+                    className="product-button pd-05 mg-05 bdr-thick bdr-blue bdr-rad-m btn fill-button-black txt-white"
                     id="button-wishlist"
                     onClick={() => addToWishlistHandler(filteredData, _id)}
                   >
