@@ -41,3 +41,7 @@ body {
 .z-index-6 {
     z-index: 99;
 }
+
+.txt-strikethrough {
+    text-decoration: line-through;
+}

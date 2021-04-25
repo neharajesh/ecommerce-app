@@ -14,13 +14,6 @@ export const Header = ({ handleToggleSidebar }) => {
         <div className="txt-xl txt-700">Pet Smart</div>
 
         <div className="flex">
-          <NavLink
-            to="/profile"
-            className="nav-link"
-            activeClassName="nav-active"
-          >
-            Profile
-          </NavLink>
           <NavLink to="/cart" className="nav-link" activeClassName="nav-active">
             Cart
           </NavLink>
@@ -30,6 +23,13 @@ export const Header = ({ handleToggleSidebar }) => {
             activeClassName="nav-active"
           >
             Wishlist
+          </NavLink>
+          <NavLink
+            to="/profile"
+            className="nav-link"
+            activeClassName="nav-active"
+          >
+            Profile
           </NavLink>
         </div>
       </div>

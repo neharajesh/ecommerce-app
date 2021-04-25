@@ -23,4 +23,8 @@
     .product-button {
         width: 50%;
     }
+    .product-details {
+        flex-direction: column;
+        width: 100%;
+    }
 }

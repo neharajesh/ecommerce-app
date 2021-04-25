@@ -7,9 +7,11 @@ import { useProduct } from "../context/product-context";
 import { updateCart } from "../Utilities/cart-utilities";
 import "./products.css";
 import { updateWishlist } from "../Utilities/wishlist-utilities";
+import { useOffers } from "../context/offers-context";
 
 export const Products = () => {
   const { productList } = useProduct();
+  const { offersList } = useOffers();
   const { setCartCount, setCartPrice, itemsInCart, setItemsInCart } = useCart();
   const { itemsInWishlist, setItemsInWishlist } = useWishlist();
 

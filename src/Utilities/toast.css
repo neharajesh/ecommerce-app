@@ -1,5 +1,13 @@
 @import url(../styles.css);
 
+.toast {
+    background-color: var(--color-primary-purple);
+    color: white;
+    padding: 1rem;
+    border-radius: 3px;
+    width: 15rem;
+}
+
 #snackbar {
     visibility: hidden; 
     min-width: 250px; 
